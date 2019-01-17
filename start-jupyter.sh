@@ -1,7 +1,6 @@
 #!/bin/bash -e
 
-# DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.17.2019
-DOCKER_IMAGE=miniconda:latest
+DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.18.2019
 
 docker pull $DOCKER_IMAGE || true
 
