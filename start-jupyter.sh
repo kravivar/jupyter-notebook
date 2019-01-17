@@ -2,7 +2,7 @@
 
 DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.18.2019
 
-docker pull $DOCKER_IMAGE || true
+docker pull $DOCKER_IMAGE
 
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
