@@ -1,0 +1,22 @@
+FROM continuumio/anaconda
+
+WORKDIR /root 
+RUN apt-get update -y
+RUN apt-get install libgomp1 -y
+RUN conda update -n base conda -y --quiet
+RUN conda create -n gl-env python=2.7 anaconda=4.0.0 -y --quiet
+RUN /bin/bash -c "source activate gl-env && conda install jupyter -y --quiet"
+RUN /bin/bash -c "source activate gl-env && conda install pip -y --quiet"
+RUN /bin/bash -c "source activate gl-env && conda update pip"
+RUN /bin/bash -c "source activate gl-env && pip install --upgrade --no-cache-dir https://get.graphlab.com/GraphLab-Create/2.1/kravivar@adobe.co/A0EA-7DD0-6DE1-3B84-40A9-1D42-19CB-2FEC/GraphLab-Create-License.tar.gz"
+RUN /bin/bash -c "source activate gl-env &&  pip install -U scikit-learn"
+RUN /bin/bash -c "source activate gl-env && pip install -U pandas"
+RUN mkdir /opt/notebooks
+RUN /bin/bash -c "source activate gl-env && conda install ipython-notebook -y --quiet"
+RUN /bin/bash -c "source activate gl-env &&  conda install nomkl numpy scipy scikit-learn numexpr -y --quiet"
+RUN /bin/bash -c "source activate gl-env && conda remove mkl mkl-service -y --quiet"
+COPY ./jupyter.sh /root
+
+EXPOSE 8888 
+
+ENTRYPOINT /bin/bash /root/jupyter.sh
