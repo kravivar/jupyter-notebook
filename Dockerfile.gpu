@@ -1,10 +1,17 @@
-FROM continuumio/miniconda3
+# FROM continuumio/miniconda3
+FROM nvidia/cuda:10.0-cudnn7-runtime
 
 WORKDIR /root 
 RUN apt-get update -y
 RUN apt-get install wget libgomp1 libgl1-mesa-glx -y
 
 # Install miniconda
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh
+RUN bash /tmp/miniconda.sh -b -p /opt/conda
+RUN rm -f /tmp/miniconda.sh
+RUN ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+RUN echo '. /etc/profile' >> /root/.profile
+ENV PATH="/opt/conda/bin:${PATH}"
 RUN conda update -n root conda -y --quiet
 
 # Create python2.7 environment and install packages. python 2.7 will not have tensorflow-gpu since the graphlab environment requires anaconda 4.0.0 which conflicts with tensorflow-gpu
@@ -15,8 +22,8 @@ RUN /bin/bash -c "source activate py27 && pip install --upgrade --no-cache-dir h
 RUN /bin/bash -c "source activate py27 && conda install ipython-notebook nomkl numpy scipy scikit-learn numexpr pandas -y"
 RUN /bin/bash -c "source activate py27 && conda remove mkl mkl-service -y"
 
-# Create python3 environment and install packages with tensorflow cpu
-RUN conda create -n py3 python=3 anaconda ipykernel tensorflow -y
+# Create python3 environment and install packages
+RUN conda create -n py3 python=3 anaconda ipykernel tensorflow-gpu -y
 RUN /bin/bash -c "source activate py3 && conda install pip -y"
 RUN /bin/bash -c "source activate py3 && conda update pip"
 RUN /bin/bash -c "source activate py3 && conda install jupyter notebook numpy scipy scikit-learn numexpr pandas -y"
