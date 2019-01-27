@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.27.2019
+DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.28.2019
 
 docker pull $DOCKER_IMAGE
 

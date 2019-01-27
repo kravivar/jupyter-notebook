@@ -3,7 +3,7 @@ FROM nvidia/cuda:10.0-cudnn7-runtime
 
 WORKDIR /root 
 RUN apt-get update -y
-RUN apt-get install wget libgomp1 -y
+RUN apt-get install wget libgomp1 libgl1-mesa-glx -y
 
 # Install miniconda
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh
