@@ -4,9 +4,9 @@ _VERSION="0.5.0"
 
 if [ $USE_GPU ]
 then
-	DOCKER_IMAGE=kripa4rk/jupyter-notebook:cpu-${_VERSION}
-else
 	DOCKER_IMAGE=kripa4rk/jupyter-notebook:gpu-${_VERSION}
+else
+	DOCKER_IMAGE=kripa4rk/jupyter-notebook:cpu-${_VERSION}
 fi
 
 docker pull $DOCKER_IMAGE
