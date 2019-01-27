@@ -1,6 +1,13 @@
 #!/bin/bash -e
 
-DOCKER_IMAGE=kripa4rk/jupyter-notebook:01.28.2019
+_VERSION="01.28.2019"
+
+if [ $USE_GPU ]
+then
+	DOCKER_IMAGE=kripa4rk/jupyter-notebook:cpu-${_VERSION}
+else
+	DOCKER_IMAGE=kripa4rk/jupyter-notebook:gpu-${_VERSION}
+fi
 
 docker pull $DOCKER_IMAGE
 
