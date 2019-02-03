@@ -1,5 +1,8 @@
 FROM continuumio/miniconda3
 
+# Port
+ENV PORT=8888
+
 WORKDIR /root 
 RUN apt-get update -y
 RUN apt-get install wget libgomp1 libgl1-mesa-glx -y

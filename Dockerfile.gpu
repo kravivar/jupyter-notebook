@@ -1,6 +1,9 @@
 # FROM continuumio/miniconda3
 FROM nvidia/cuda:10.0-cudnn7-runtime
 
+# Port
+ENV PORT=8888
+
 WORKDIR /root 
 RUN apt-get update -y
 RUN apt-get install wget libgomp1 libgl1-mesa-glx -y
