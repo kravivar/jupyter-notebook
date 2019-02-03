@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-_VERSION="0.5.0"
+_VERSION="0.6.0"
 
 if [ $USE_GPU ]
 then
