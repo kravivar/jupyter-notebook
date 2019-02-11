@@ -3,6 +3,8 @@ version: '2.3'
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
+    environment:
+      - DEFAULT_HOST=jupyter-cpu   
     ports:
       - "80:80"
     volumes:
