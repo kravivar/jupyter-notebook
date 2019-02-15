@@ -39,7 +39,7 @@ services:
   ubuntu-server:
     image: bitnami/apache
     volumes:
-      - /../../:/app
+      - ./../../:/app
     expose:
       - "8003"
     environment:
