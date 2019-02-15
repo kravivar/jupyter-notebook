@@ -36,6 +36,18 @@ services:
       - VIRTUAL_PORT=8001
       - PORT=8001
 
+  ubuntu-server:
+    image: bitnami/apache
+    volumes:
+      - /../../:/app
+    expose:
+      - "8003"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - VIRTUAL_HOST=ubuntu-server
+      - APACHE_HTTP_PORT_NUMBER=8003
+      - PORT=8003
+
 # version: '2.3'
 # services:
 #   nvidia:
