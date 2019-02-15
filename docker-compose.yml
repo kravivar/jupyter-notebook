@@ -43,10 +43,9 @@ services:
     expose:
       - "8003"
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
       - VIRTUAL_HOST=ubuntu-server
       - APACHE_HTTP_PORT_NUMBER=8003
-      - PORT=8003
+      - VIRTUAL_PORT=8003
 
 # version: '2.3'
 # services:
