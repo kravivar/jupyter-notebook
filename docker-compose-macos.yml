@@ -1,0 +1,23 @@
+version: '2.3'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    environment:
+      - DEFAULT_HOST=localhost   
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  localhost:
+    image: kripa4rk/jupyter-notebook:cpu-0.6.0
+    volumes:
+      - ./../:/opt/notebooks
+      - ./jupyter.sh:/root/jupyter.sh
+    expose:
+      - "8002"
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8002
+      - PORT=8002
