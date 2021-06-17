@@ -1,0 +1,9 @@
+jupyter 
+notebook 
+numpy 
+scipy 
+scikit-learn 
+numexpr 
+pandas 
+pandas-datareader
+matplotlib
