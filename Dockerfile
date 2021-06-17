@@ -1,5 +1,9 @@
 FROM continuumio/miniconda3
 
+# Copy files
+COPY ./jupyter.sh /root
+COPY ./requirements.txt /root
+
 # Port
 ENV PORT=8888
 
@@ -11,18 +15,14 @@ RUN apt-get install wget libgomp1 libgl1-mesa-glx -y
 RUN conda update -n root conda -y --quiet
 
 # Create python3 environment and install packages with tensorflow cpu
-RUN conda create -n py3 python=3 anaconda ipykernel tensorflow -y
-RUN /bin/bash -c "source activate py3 && conda install pip -y"
-RUN /bin/bash -c "source activate py3 && conda update pip"
-RUN /bin/bash -c "source activate py3 && conda install jupyter notebook numpy scipy scikit-learn numexpr pandas pandas-datareader -y"
+RUN conda create -n py3 python=3 anaconda ipykernel tensorflow pip -y
+RUN /bin/bash -c "conda activate py3 && conda install --file /root/requirements.txt -y"
 
 # Install kernels for jupyter
-RUN /bin/bash -c "source activate py27 && ipython kernel install --user"
-RUN /bin/bash -c "source activate py3 && ipython kernel install --user"
+RUN /bin/bash -c "conda activate py3 && ipython kernel install --user"
 
 
 RUN mkdir /opt/notebooks
-COPY ./jupyter.sh /root
 
 EXPOSE 8888 
 
