@@ -10,7 +10,7 @@ ENV PORT=8888
 
 WORKDIR /root 
 RUN apt-get update -y
-RUN apt-get install wget libgomp1 libgl1-mesa-glx -y
+RUN apt-get install wget libgomp1 libgl1-mesa-glx openssh-client -y
 
 # Install miniconda
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh

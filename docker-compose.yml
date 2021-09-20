@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   jupyter-cpu:
-    image: kripa4rk/jupyter-notebook:cpu-1.1.4
+    image: kripa4rk/jupyter-notebook:cpu-1.1.5
     volumes:
       - ./../:/opt/notebooks
       - ./jupyter.sh:/root/jupyter.sh
@@ -23,7 +23,7 @@ services:
       - PORT=8002
 
   jupyter-gpu:
-    image: kripa4rk/jupyter-notebook:gpu-1.1.4
+    image: kripa4rk/jupyter-notebook:gpu-1.1.5
     runtime: nvidia
     volumes:
       - ./../:/opt/notebooks

@@ -9,7 +9,7 @@ ENV PORT=8888
 
 WORKDIR /root 
 RUN apk update
-RUN apk add mesa-gl libgomp wget
+RUN apk add mesa-gl libgomp wget openssh-client
 
 # Install miniconda
 RUN conda update -n root conda -y --quiet

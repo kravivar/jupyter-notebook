@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   localhost:
-    image: kripa4rk/jupyter-notebook:cpu-1.1.4
+    image: kripa4rk/jupyter-notebook:cpu-1.1.5
     volumes:
       - ./../:/opt/notebooks
       - ./jupyter.sh:/root/jupyter.sh
