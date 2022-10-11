@@ -6,7 +6,7 @@ RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y --no-install-recommends \
         dnsutils \
-        wget libgomp1 libgl1-mesa-glx git openssh-client \
+        wget libgomp1 libgl1-mesa-glx git openssh-client gcc \
         iputils-ping \
  && rm -rf /var/lib/apt/lists/*
 
@@ -15,6 +15,24 @@ COPY ./requirements.txt /tmp/requirements.txt
 # Create python3 environment and install packages with tensorflow cpu
 RUN python -m pip install --no-cache-dir \
     -r /tmp/requirements.txt
+
+# Remove the current kernel and rename it.
+RUN /bin/bash -c "jupyter kernelspec uninstall Python"
+
+# Create py37 environment
+RUN conda create -n python_37 python=3.7 ipykernel nomkl numpy scipy scikit-learn numexpr pandas -y
+RUN /bin/bash -c "source activate python_37 && pip install -r /tmp/requirements.txt"
+
+# Install kernels for jupyter
+RUN /bin/bash -c "source activate python_37 && ipython kernel install --name python_37"
+
+# Create py38 environment
+RUN conda create -n python_38 python=3.8 ipykernel nomkl numpy scipy scikit-learn numexpr pandas -y
+RUN /bin/bash -c "source activate python_38 && pip install -r /tmp/requirements.txt"
+
+# Install kernels for jupyter
+RUN /bin/bash -c "source activate python_38 && ipython kernel install --name python_38"
+
 
 USER $NB_USER
 
