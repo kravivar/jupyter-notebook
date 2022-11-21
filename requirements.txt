@@ -2,7 +2,7 @@ jupyterhub==1.5.0
 nbgitpuller==1.0.2
 notebook==6.4.12
 numpy==1.22.0
-tensorflow==2.7.2 
+tensorflow==2.9.3 
 scipy==1.7.1
 scikit-learn==0.24.2 
 numexpr==2.7.3 
